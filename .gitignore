@@ -3,10 +3,15 @@ venv/
 
 # Environment Variables
 .env
+.env.*
+!.env.example
 
 # Google OAuth Files
 credentials.json
 token.json
+
+# SQLite Database
+database/*.db
 
 # Python Cache
 __pycache__/
