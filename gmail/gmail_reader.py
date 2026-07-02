@@ -1,5 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from database.db import email_exists
+from database.db import save_email
 
 from googleapiclient.discovery import build
 
@@ -37,6 +39,7 @@ def get_unread_emails(creds):
     print("=" * 80)
 
     for index, message in enumerate(messages, start=1):
+        gmail_id = message["id"]
 
         # Get complete email details
         msg = (
@@ -77,7 +80,10 @@ def get_unread_emails(creds):
         except Exception as e:
             print(f"Time conversion error: {e}")
             received_time = "Unknown"
-
+            
+        if email_exists(gmail_id):
+            print(f"⏭ Skipping Email #{index} (Already Processed)")
+            continue
         print("\n" + "-" * 80)
         snippet = msg.get("snippet", "No Preview Available")
         print(f"📧 Email #{index}")
@@ -87,3 +93,4 @@ def get_unread_emails(creds):
         print(f"🕒 Received  : {received_time}")
         print(f"📄 Snippet   : {snippet}")
         print("-" * 80)
+        save_email(gmail_id=gmail_id,sender=sender,subject=subject,received_time=received_time)
