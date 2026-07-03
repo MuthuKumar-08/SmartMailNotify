@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 
 app = FastAPI()
 
-
 @app.get("/")
 def home():
     return {
@@ -10,7 +9,6 @@ def home():
         "status": "Running",
         "message": "Server is ready 🚀"
     }
-
 
 @app.post("/gmail/webhook")
 async def gmail_webhook(request: Request):
