@@ -1,19 +1,32 @@
 """
 Application configuration.
-
-All project settings should live here.
 """
 
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
+# ----------------------------
 # Gmail API
+# ----------------------------
+
 GMAIL_SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly"
 ]
 
-# Gmail Search
 EMAIL_QUERY = "is:unread"
-
-# Number of emails to fetch
 MAX_EMAILS = 10
 
-# SQLite Database
+# ----------------------------
+# Database
+# ----------------------------
+
 DATABASE_NAME = "database/smartmail.db"
+
+# ----------------------------
+# Gemini AI
+# ----------------------------
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")

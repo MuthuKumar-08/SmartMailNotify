@@ -1,6 +1,7 @@
 from gmail.auth import authenticate
 from gmail.service import process_emails
 from database.db import create_database
+from whatsapp.sender import send_whatsapp_message
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
     print("✅ Gmail Authentication Successful!")
 
     process_emails(creds)
+
 
 
 if __name__ == "__main__":
