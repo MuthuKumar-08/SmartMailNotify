@@ -7,7 +7,7 @@ from ai.extractor import extract_information
 from utils.formatter import print_email
 from ai.gemini_client import generate_summary
 from ai.decision import should_notify
-from whatsapp.sender import send_whatsapp_message
+
 
 def process_emails(creds):
     """
@@ -79,19 +79,7 @@ def process_emails(creds):
         print(f"📝 Reason    : {decision['reason']}")
         
         if decision["notify"]:
-
-            whatsapp_email = {
-                "sender": email["sender"],
-                "subject": email["subject"],
-                "category": category,
-                "priority": priority["priority"]
-            }
-
-            send_whatsapp_message(
-                "+919442872844",
-                whatsapp_email,
-                summary
-            )
+            print("📱 WhatsApp notification would be sent here.")
 
         print(
             f"🔍 Matched   : "
